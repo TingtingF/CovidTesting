@@ -11,13 +11,30 @@ head(data )
 summary(data ) 
 str(data)
 
+# opprette en variabel for måned
+data <- data %>% 
+  mutate (Måned = factor(dplyr::case_when(
+    month==1 ~ "januar",
+    month==2 ~ "februar",
+    month==3 ~ "mars",
+    month==4 ~ "april",
+    month==5 ~ "mai",
+    month==6 ~ "juni",
+    month==7 ~ "juli",
+    month==8 ~ "august",
+    month==9 ~ "september",
+    month==10 ~ "oktober",
+    month==11 ~ "november",
+    month==12 ~ "desember") )) %>% 
+  rename(År=year)
+
 
 # totalt antall tilfeller og maksimale tilfeller og død etter kontinenter
 antall <- data %>% 
-  rename(Kontinent=continentExp,År = year, Måned= month) %>% 
+  rename(Kontinent=continentExp,År = year) %>% 
   group_by(År,Måned,Kontinent,) %>% 
   summarise(tilfeller_sum = sum(cases), tilfeller_mean = mean(cases), tilfeller_max = max(cases),død_sum = sum(deaths), død_mean = mean(deaths),død_max = max(deaths)) %>% 
-  arrange(År,Måned)
+  arrange(År,Måned,Kontinent)
 
 # ekspotere resultat til excel-format
 write_xlsx(antall,"resultat_antall.xlsx")
