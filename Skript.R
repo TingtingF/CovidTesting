@@ -59,9 +59,9 @@ Nor_US_Sp <- Norge_US + geom_line(data=spain,
                                   alpha = 0.4)
 PlotTrend <- Nor_US_Sp + geom_line(data=italy, 
                                       aes(date, as.numeric(CumulativeNumber)),
-                                      color="#009E73",
+                                      color="darkorchid",
                                       alpha = 0.9) + 
-                                   labs(title="Norge (ræd), US (blå), Italy(grønn), & Spain (gul)")+ 
+                                   labs(title="Norge (ræd), US (blå), Italy(orchid), & Spain (gul)")+ 
                                    ylab("Kumulativ antall for 14 dager per 100,000 innbyggere") 
 
 ggsave("PlotTrend.png")
