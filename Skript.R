@@ -66,4 +66,4 @@ PlotTrend <- Nor_US_Sp + geom_line(data=italy,
 
 ggsave("PlotTrend.png")
 
-
+ggsave("PlotTrend.jpg")
